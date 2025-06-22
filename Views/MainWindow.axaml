@@ -7,14 +7,38 @@
         x:Class="Projekt_P4.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Projekt_P4">
+      Title="Projekt_P4">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+	<Grid ColumnDefinitions="Auto,*" RowDefinitions="*">
+		<DockPanel Grid.Column="0" LastChildFill="False" Width="200">
+		<!-- PANEL BOCZNY -->
+		<Expander Header="Produkty" IsExpanded="False" Margin="5,5,5,0" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+			<StackPanel>
+				<Button Content="Wyświetl wszystkie" Margin="0 2" HorizontalAlignment="Stretch"/>
+				<Button Content="Wyszukaj produkt" Margin="0 2" HorizontalAlignment="Stretch"/>
+				<Button Content="Dodaj produkt" Margin="0 2" HorizontalAlignment="Stretch"/>
+				<Button Content="Usuń produkt" Margin="0 2" HorizontalAlignment="Stretch"/>
+			</StackPanel>
+		</Expander>
+		<Expander Header="Edycja" IsExpanded="False" Margin="5,0,5,5" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+			<StackPanel>
+				<Button Content="Zmień cenę" Margin="0 2" HorizontalAlignment="Stretch"/>
+				<Button Content="Zmień ilość" Margin="0 2" HorizontalAlignment="Stretch"/>
+			</StackPanel>
+		</Expander>
+		<Expander Header="Zarządzanie" IsExpanded="False" Margin="5,0,5,5" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+			<StackPanel>
+				<Button Content="Eksport do pliku" Margin="0 2" HorizontalAlignment="Stretch"/>
+				<!--<Button Content="Utwórz wykres" Margin="0 2" HorizontalAlignment="Stretch"/>-->
+			</StackPanel>
+		</Expander>
+		</DockPanel>
+		<Border Background="White" Padding="10" Grid.Column="1">
+			<TextBlock Text="{Binding Greeting}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		</Border>
+	</Grid>
 </Window>
