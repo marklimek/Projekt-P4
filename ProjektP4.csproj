@@ -11,12 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <AvaloniaResource Include="Assets\**" />
+    <Folder Include="AppLogic\Models\" />
+    <AvaloniaResource Include="AppUI\Assets\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaXaml Remove="Assets\icons.axaml" />
+    <AvaloniaXaml Remove="AppUI\Assets\icons.axaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaResource Update="Assets\icons.axaml">
+    <AvaloniaResource Update="AppUI\Assets\icons.axaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>
   </ItemGroup>

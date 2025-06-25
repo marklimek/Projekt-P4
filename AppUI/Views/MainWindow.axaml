@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ProjektP4.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ProjektP4.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="avares://ProjektP4/AppUI/Assets/avalonia-logo.ico"
+      Title="Projekt_P4">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<SplitView IsPaneOpen="{Binding IsPaneOpen}" 
+			   OpenPaneLength="200" 
+			   CompactPaneLength="48" 
+			   DisplayMode="CompactInline" 
+			   Background="#1e1e1e" 
+			   PaneBackground="#1e1e1e">
+		<SplitView.Pane>
+			<StackPanel Spacing="5" Margin="5">
+				<Button Command="{Binding TriggerPaneCommand}">
+					<PathIcon Data="{StaticResource LineHorizontal3}"></PathIcon>
+				</Button>
+				<ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedListItem}">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type vm:ListItemTemplate}">
+							<StackPanel Spacing="15" Orientation="Horizontal">
+								<PathIcon Data="{Binding ListItemIcon}"></PathIcon>
+								<TextBlock Text="{Binding Label}"></TextBlock>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</SplitView.Pane>
+		<SplitView.Content>
+			<Border CornerRadius="12 0 0 0" Background="#2d2d2d">
+				<TransitioningContentControl Content="{Binding CurrentPage}" />
+				
+			</Border>
+		</SplitView.Content>
+	</SplitView>
+</Window>
