@@ -39,7 +39,11 @@ namespace ProjektP4.AppUI.ViewModels
         }
         [RelayCommand]
         private void Delete(Product product) { 
-        Products.Remove(product);
+            if(product is null)
+                 return; 
+            using var service = new InventoryService();
+            service.RemoveProduct(product);
+            Products.Remove(product);
         }
     }
 }

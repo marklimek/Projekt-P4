@@ -8,7 +8,7 @@
 			 x:DataType="vm:ProductsPageViewModel">
 
 	<DataGrid x:Name="ProductsGrid" ItemsSource="{Binding Products}" Margin="20" GridLinesVisibility="All"
-			  BorderThickness="1" BorderBrush="Gray" AutoGenerateColumns="False" HeadersVisibility="Column" >
+			  BorderThickness="1" BorderBrush="Gray" AutoGenerateColumns="False">
 
 		<DataGrid.Columns>
 			<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
