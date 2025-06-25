@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Projekt_P4.ViewModels;
+using ProjektP4.ViewModels;
 
-namespace Projekt_P4
+namespace ProjektP4
 {
     public class ViewLocator : IDataTemplate
     {

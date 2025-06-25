@@ -1,10 +1,10 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Projekt_P4.ViewModels"
+        xmlns:vm="using:ProjektP4.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Projekt_P4.Views.MainWindow"
+        x:Class="ProjektP4.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
       Title="Projekt_P4">
@@ -13,32 +13,34 @@
 		<vm:MainWindowViewModel/>
 	</Design.DataContext>
 
-	<Grid ColumnDefinitions="Auto,*" RowDefinitions="*">
-		<DockPanel Grid.Column="0" LastChildFill="False" Width="200">
-		<!-- PANEL BOCZNY -->
-		<Expander Header="Produkty" IsExpanded="False" Margin="5,5,5,0" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
-			<StackPanel>
-				<Button Content="Wyświetl wszystkie" Margin="0 2" HorizontalAlignment="Stretch"/>
-				<Button Content="Wyszukaj produkt" Margin="0 2" HorizontalAlignment="Stretch"/>
-				<Button Content="Dodaj produkt" Margin="0 2" HorizontalAlignment="Stretch"/>
-				<Button Content="Usuń produkt" Margin="0 2" HorizontalAlignment="Stretch"/>
+	<SplitView IsPaneOpen="{Binding IsPaneOpen}" 
+			   OpenPaneLength="200" 
+			   CompactPaneLength="48" 
+			   DisplayMode="CompactInline" 
+			   Background="#1e1e1e" 
+			   PaneBackground="#1e1e1e">
+		<SplitView.Pane>
+			<StackPanel Spacing="5" Margin="5">
+				<Button Command="{Binding TriggerPaneCommand}">
+					<PathIcon Data="{StaticResource LineHorizontal3}"></PathIcon>
+				</Button>
+				<ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedListItem}">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type vm:ListItemTemplate}">
+							<StackPanel Spacing="15" Orientation="Horizontal">
+								<PathIcon Data="{Binding ListItemIcon}"></PathIcon>
+								<TextBlock Text="{Binding Label}"></TextBlock>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
 			</StackPanel>
-		</Expander>
-		<Expander Header="Edycja" IsExpanded="False" Margin="5,0,5,5" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
-			<StackPanel>
-				<Button Content="Zmień cenę" Margin="0 2" HorizontalAlignment="Stretch"/>
-				<Button Content="Zmień ilość" Margin="0 2" HorizontalAlignment="Stretch"/>
-			</StackPanel>
-		</Expander>
-		<Expander Header="Zarządzanie" IsExpanded="False" Margin="5,0,5,5" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
-			<StackPanel>
-				<Button Content="Eksport do pliku" Margin="0 2" HorizontalAlignment="Stretch"/>
-				<!--<Button Content="Utwórz wykres" Margin="0 2" HorizontalAlignment="Stretch"/>-->
-			</StackPanel>
-		</Expander>
-		</DockPanel>
-		<Border Background="White" Padding="10" Grid.Column="1">
-			<TextBlock Text="{Binding Greeting}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-		</Border>
-	</Grid>
+		</SplitView.Pane>
+		<SplitView.Content>
+			<Border CornerRadius="12 0 0 0" Background="#2d2d2d">
+				<TransitioningContentControl Content="{Binding CurrentPage}" />
+				
+			</Border>
+		</SplitView.Content>
+	</SplitView>
 </Window>

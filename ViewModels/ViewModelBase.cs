@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Projekt_P4.ViewModels
+namespace ProjektP4.ViewModels
 {
     public class ViewModelBase : ObservableObject
     {

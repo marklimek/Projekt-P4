@@ -4,10 +4,10 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using Projekt_P4.ViewModels;
-using Projekt_P4.Views;
+using ProjektP4.ViewModels;
+using ProjektP4.Views;
 
-namespace Projekt_P4
+namespace ProjektP4
 {
     public partial class App : Application
     {

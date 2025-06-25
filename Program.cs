@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
 
-namespace Projekt_P4
+namespace ProjektP4
 {
     internal sealed class Program
     {
