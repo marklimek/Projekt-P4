@@ -10,15 +10,33 @@
 	<StackPanel Margin="20" Spacing="10">
 		<TextBlock Text="Dodaj produkt" FontSize="20" FontWeight="Bold" Margin="0 0 0 10"/>
 
-
-		<TextBox Watermark="Nazwa" Text="{Binding Name, Mode=TwoWay}" />
-		<TextBox Watermark="Kategoria" Text="{Binding Category, Mode=TwoWay}" />
-		<TextBox Watermark="Cena" Text="{Binding Price, Mode=TwoWay}" />
-		<TextBox Watermark="Ilość" Text="{Binding Quantity, Mode=TwoWay}" />
-
-		<ComboBox ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedProductType, Mode=TwoWay}" />
 		<StackPanel>
+			<TextBlock Text="Nazwa"/>
+			<TextBox Watermark="Nazwa produktu" Text="{Binding Name, Mode=TwoWay}" />
+		</StackPanel>
+		<StackPanel>
+			<TextBlock Text="Kategoria"/>
+			<TextBox Watermark="Kategoria produktu" Text="{Binding Category, Mode=TwoWay}" />
+		</StackPanel>
+		<StackPanel>
+			<TextBlock Text="Cena"/>
+			<TextBox Text="{Binding Price, Mode=TwoWay}" />
+		</StackPanel>
+		<StackPanel>
+			<TextBlock Text="Ilość"/>
+			<TextBox Text="{Binding Quantity, Mode=TwoWay}" />
+		</StackPanel>
+		<StackPanel>
+			<TextBlock Text="Typ produktu"/>
+			<ComboBox ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedProductType, Mode=TwoWay}" />
+		</StackPanel>
+		<!--Warranty or Expiration date fields-->
+		<StackPanel>
+			<TextBlock Text="Czas gwarancji" IsVisible="{Binding IsNonFood}" />
 			<TextBox Watermark="Okres gwarancji (miesiące)"  Text="{Binding WarrantyPeriod}" IsVisible="{Binding IsNonFood}" />
+		</StackPanel>
+		<StackPanel>
+			<TextBlock Text="Data ważności" IsVisible="{Binding IsFood}"/>
 			<DatePicker SelectedDate="{Binding ExpirationDate}" IsVisible="{Binding IsFood}"  />
 		</StackPanel>
 		<!--Buttons-->
