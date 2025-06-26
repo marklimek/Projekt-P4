@@ -3,7 +3,7 @@
 namespace ProjektP4.AppLogic.Models
 {
 
-    public abstract class Product
+    public abstract class Product 
     {
         [Key]
         public int Id { get; set; }

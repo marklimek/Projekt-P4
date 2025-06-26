@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjektP4.AppLogic.Test;
 using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
 
 namespace ProjektP4.AppUI.ViewModels
 {
     public partial class ProductsPageViewModel : ViewModelBase
     {
-        public ObservableCollection<Product> Products { get; } = new();
+        public ObservableCollection<SelectableProduct> Products { get; } = new();
 
         public ProductsPageViewModel()
         {
@@ -26,24 +27,35 @@ namespace ProjektP4.AppUI.ViewModels
             var items = service.GetAllProducts();
             Products.Clear();
             foreach (var item in items)
-                Products.Add(item);
+                Products.Add(new SelectableProduct(item));
         }
 
         [RelayCommand]
-        private void ShowDetails(Product product) { 
+        private void ShowDetails(SelectableProduct product) { 
         //TODO
         }
         [RelayCommand]
-        private void Edit(Product product) { 
+        private void Edit(SelectableProduct product) { 
         //TODO
         }
+        //Remove rows by clicking icon in action column
         [RelayCommand]
-        private void Delete(Product product) { 
+        private void Delete(SelectableProduct product) { 
             if(product is null)
                  return; 
             using var service = new InventoryService();
             service.RemoveProduct(product);
             Products.Remove(product);
+        }
+        public ICommand DeleteSelectedCommand => new RelayCommand(DeleteSelected);
+
+        public void DeleteSelected()
+        {
+            var selected = Products.Where(p => p.IsSelected).ToList();
+            foreach (var product in selected)
+            {
+                Products.Remove(product);
+            }
         }
     }
 }

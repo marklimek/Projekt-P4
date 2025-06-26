@@ -6,18 +6,49 @@
 			 xmlns:vm="clr-namespace:ProjektP4.AppUI.ViewModels"
              x:Class="ProjektP4.AppUI.Views.ProductsPageView"
 			 x:DataType="vm:ProductsPageViewModel">
+	<StackPanel>
 
+
+		<Grid Margin="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<!-- Button Add product-->
+			<Button Grid.Column="1" Width="160" Height="40" HorizontalAlignment="Right">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+					<PathIcon Data="{StaticResource AddProduct}" Width="16" Height="16"/>
+					<TextBlock Text="Dodaj produkt" VerticalAlignment="Center"/>
+				</StackPanel>
+			</Button>
+			<Button Grid.Column="2" Width="160" Height="40" HorizontalAlignment="Right" Command="{Binding DeleteSelectedCommand}">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+				<PathIcon Data="{StaticResource Delete}" Width="16" Height="16"/>
+				<TextBlock Text="Usuń zaznaczone" VerticalAlignment="Center"/>
+				</StackPanel>
+			</Button>
+		</Grid>
+
+		<!--Products table-->
 	<DataGrid x:Name="ProductsGrid" ItemsSource="{Binding Products}" Margin="20" GridLinesVisibility="All"
 			  BorderThickness="1" BorderBrush="Gray" AutoGenerateColumns="False">
 
 		<DataGrid.Columns>
+			<DataGridTemplateColumn>
+				<DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+						<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" HorizontalAlignment="Center"/>
+					</DataTemplate>
+				</DataGridTemplateColumn.CellTemplate>
+			</DataGridTemplateColumn>
 			<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
 			<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
 			<DataGridTextColumn Header="Cena" Binding="{Binding Price}" />
 			<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
 			<DataGridTextColumn Header="Gwarancja" Binding="{Binding .,Converter={StaticResource WarrantyConverter}}" />
 			<DataGridTextColumn Header="Data ważności" Binding="{Binding .,Converter={StaticResource ExpirationDateConverter}}" />
-			<!-- Kolumna z ikonami akcji -->
+			<!-- Action buttons column -->
 			<DataGridTemplateColumn Header="Akcje">
 				<DataGridTemplateColumn.CellTemplate>
 					<DataTemplate>
@@ -39,5 +70,5 @@
 		</DataGrid.Columns>
 		
 	</DataGrid>
-	
+	</StackPanel>
 </UserControl>
