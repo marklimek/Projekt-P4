@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="AppLogic\Interfaces\" />
     <Folder Include="AppLogic\Models\" />
     <AvaloniaResource Include="AppUI\Assets\**" />
   </ItemGroup>

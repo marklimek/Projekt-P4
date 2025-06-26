@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ProjektP4.AppLogic.Test;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
+using ProjektP4.AppUI.ViewModels.UIModels;
 
 namespace ProjektP4.AppUI.ViewModels
 {
@@ -16,11 +17,14 @@ namespace ProjektP4.AppUI.ViewModels
     {
         public ObservableCollection<SelectableProduct> Products { get; } = new();
 
-        public ProductsPageViewModel()
+
+        private readonly Action<ViewModelBase> _navigate;
+        public ProductsPageViewModel(Action<ViewModelBase> navigate)
         {
-           // TestData.AddSampleProduct(); // Dodaj testowy produkt
-            LoadProducts();              // Załaduj produkty z bazy
+            _navigate = navigate;
+            LoadProducts();
         }
+
         public void LoadProducts()
         {
             using var service = new InventoryService();
@@ -29,6 +33,7 @@ namespace ProjektP4.AppUI.ViewModels
             foreach (var item in items)
                 Products.Add(new SelectableProduct(item));
         }
+
 
         [RelayCommand]
         private void ShowDetails(SelectableProduct product) { 
@@ -47,15 +52,21 @@ namespace ProjektP4.AppUI.ViewModels
             service.RemoveProduct(product);
             Products.Remove(product);
         }
-        public ICommand DeleteSelectedCommand => new RelayCommand(DeleteSelected);
 
+        [RelayCommand]
         public void DeleteSelected()
         {
             var selected = Products.Where(p => p.IsSelected).ToList();
             foreach (var product in selected)
             {
                 Products.Remove(product);
+                //TODO add remove product from database
             }
+        }
+
+        [RelayCommand]
+        public void AddProduct() {
+            _navigate(new AddProductPageViewModel(_navigate));
         }
     }
 }

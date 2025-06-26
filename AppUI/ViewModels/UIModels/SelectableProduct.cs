@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektP4.AppUI.ViewModels
+namespace ProjektP4.AppUI.ViewModels.UIModels
 {
 
     public class SelectableProduct : Product

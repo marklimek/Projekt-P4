@@ -6,23 +6,26 @@
 			 xmlns:vm="clr-namespace:ProjektP4.AppUI.ViewModels"
              x:Class="ProjektP4.AppUI.Views.ProductsPageView"
 			 x:DataType="vm:ProductsPageViewModel">
-	<StackPanel>
-
-
-		<Grid Margin="10">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
+	
+	<Grid RowDefinitions="Auto,*">
+		
+		<Grid Margin="10" Grid.Row="0">
+			<TextBlock Text="Lista produktów" FontSize="20" FontWeight="Bold" Margin="0 0 0 10"/>
+			  <Grid.ColumnDefinitions>
+				 <ColumnDefinition Width="*" />
+				 <ColumnDefinition Width="Auto" />
+				 <ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
+
 			<!-- Button Add product-->
-			<Button Grid.Column="1" Width="160" Height="40" HorizontalAlignment="Right">
+			<Button Grid.Column="1" Margin="0 10 10 0" Width="160" Height="40" HorizontalAlignment="Right" Command="{Binding AddProductCommand}">
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
 					<PathIcon Data="{StaticResource AddProduct}" Width="16" Height="16"/>
 					<TextBlock Text="Dodaj produkt" VerticalAlignment="Center"/>
 				</StackPanel>
 			</Button>
-			<Button Grid.Column="2" Width="160" Height="40" HorizontalAlignment="Right" Command="{Binding DeleteSelectedCommand}">
+			<!-- Button Remove selected products-->
+			<Button Grid.Column="2" Margin="10 10 10 0" Width="160" Height="40" HorizontalAlignment="Right" Command="{Binding DeleteSelectedCommand}">
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
 				<PathIcon Data="{StaticResource Delete}" Width="16" Height="16"/>
 				<TextBlock Text="Usuń zaznaczone" VerticalAlignment="Center"/>
@@ -31,9 +34,8 @@
 		</Grid>
 
 		<!--Products table-->
-	<DataGrid x:Name="ProductsGrid" ItemsSource="{Binding Products}" Margin="20" GridLinesVisibility="All"
-			  BorderThickness="1" BorderBrush="Gray" AutoGenerateColumns="False">
-
+	<DataGrid Grid.Row="1" x:Name="ProductsGrid" ItemsSource="{Binding Products}" Margin="20" GridLinesVisibility="All"
+			  BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="False">
 		<DataGrid.Columns>
 			<DataGridTemplateColumn>
 				<DataGridTemplateColumn.CellTemplate>
@@ -52,8 +54,8 @@
 			<DataGridTemplateColumn Header="Akcje">
 				<DataGridTemplateColumn.CellTemplate>
 					<DataTemplate>
-						<StackPanel Orientation="Horizontal" Spacing="8">
-							<Button ToolTip.Tip="Szczegóły" Command="{Binding DataContext.ShowDetailsCommand, ElementName=ProductsGrid}" CommandParameter="{Binding}">
+						<StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center">
+							<Button ToolTip.Tip="Szczegóły" Margin="10 0 0 0" Command="{Binding DataContext.ShowDetailsCommand, ElementName=ProductsGrid}" CommandParameter="{Binding}">
 									
 								<PathIcon Data="{StaticResource Details}" Width="16" Height="16"/>
 							</Button>
@@ -68,7 +70,6 @@
 				</DataGridTemplateColumn.CellTemplate>
 			</DataGridTemplateColumn>
 		</DataGrid.Columns>
-		
 	</DataGrid>
-	</StackPanel>
+	</Grid>
 </UserControl>
