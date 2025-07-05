@@ -3,6 +3,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ProjektP4.AppUI.Views.HomePageView">
-  Hey HI Hello!
+             xmlns:vm="clr-namespace:ProjektP4.AppUI.ViewModels"
+             x:Class="ProjektP4.AppUI.Views.HomePageView"
+             x:DataType="vm:HomePageViewModel">
+
+	<Grid RowDefinitions="Auto,*">
+		<StackPanel Margin="20" Spacing="20">
+
+			<!-- Tabela 1: Ostatnio dodane produkty -->
+			<TextBlock Text="Ostatnio dodane produkty" FontSize="18" FontWeight="Bold"/>
+			<DataGrid  AutoGenerateColumns="False" GridLinesVisibility="All"
+                      BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Nazwa"  />
+					<DataGridTextColumn Header="Kategoria"  />
+					<DataGridTextColumn Header="Ilość"  />
+					<DataGridTextColumn Header="Dodatkowe info"  />
+					<DataGridTextColumn Header="Data dodania"  />
+				</DataGrid.Columns>
+			</DataGrid>
+
+			<!-- Tabela 2: Produkty z ilością ≤ 5 -->
+			<TextBlock Text="Produkty wymagające uzupełnienia" FontSize="18" FontWeight="Bold"/>
+			<DataGrid  AutoGenerateColumns="False" GridLinesVisibility="All"
+                      BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Nazwa"  />
+					<DataGridTextColumn Header="Kategoria"  />
+					<DataGridTextColumn Header="Ilość"  />
+					<DataGridTextColumn Header="Dodatkowe info"  />
+					<DataGridTemplateColumn Header="Akcje">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+									<Button ToolTip.Tip="Uzupełnij" >
+										<PathIcon Data="{StaticResource AddProduct}" Width="16" Height="16"/>
+									</Button>
+									<Button ToolTip.Tip="Szczegóły" >
+										<PathIcon Data="{StaticResource Details}" Width="16" Height="16"/>
+									</Button>
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+
+		</StackPanel>
+	</Grid>
 </UserControl>

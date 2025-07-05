@@ -8,7 +8,7 @@
         x:Class="ProjektP4.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="avares://ProjektP4/AppUI/Assets/avalonia-logo.ico"
-      Title="Projekt_P4">
+        Title="Projekt Warehouse">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel/>

@@ -2,51 +2,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:vm="clr-namespace:ProjektP4.AppUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="650"
+             xmlns:vm="clr-namespace:ProjektP4.AppUI.ViewModels"
              x:Class="ProjektP4.AppUI.Views.AddProductPageView"
-			 x:DataType="vm:AddProductPageViewModel">
+             x:DataType="vm:AddProductPageViewModel">
 
-	<StackPanel Margin="20" Spacing="10">
-		<TextBlock Text="Dodaj produkt" FontSize="20" FontWeight="Bold" Margin="0 0 0 10"/>
 
+	<Grid HorizontalAlignment="Center">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Border Grid.Column="1" MaxWidth="600" BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Padding="20">
+			<StackPanel Margin="0" Spacing="10">
+				<TextBlock Text="Dodaj produkt" FontSize="20" FontWeight="Bold" Margin="0 0 0 10"/>
+
+		<!-- Nazwa produktu -->
 		<StackPanel>
-			<TextBlock Text="Nazwa"/>
+			<TextBlock Text="Nazwa produktu"/>
 			<TextBox Watermark="Nazwa produktu" Text="{Binding Name, Mode=TwoWay}" />
 		</StackPanel>
+
+		<!-- Kategoria -->
 		<StackPanel>
 			<TextBlock Text="Kategoria"/>
-			<TextBox Watermark="Kategoria produktu" Text="{Binding Category, Mode=TwoWay}" />
+			<ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" DisplayMemberBinding="{Binding CategoryName}" HorizontalAlignment="Stretch" />
 		</StackPanel>
+
+		<!-- Cena -->
 		<StackPanel>
 			<TextBlock Text="Cena"/>
-			<TextBox Text="{Binding Price, Mode=TwoWay}" />
+			<NumericUpDown Value="{Binding Price, Mode=TwoWay}" Minimum="0" Increment="0.01" />
 		</StackPanel>
+
+		<!-- Ilość -->
 		<StackPanel>
 			<TextBlock Text="Ilość"/>
-			<TextBox Text="{Binding Quantity, Mode=TwoWay}" />
+			<NumericUpDown Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" />
 		</StackPanel>
-		<StackPanel>
-			<TextBlock Text="Typ produktu"/>
-			<ComboBox ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedProductType, Mode=TwoWay}" />
+
+		<!-- Gwarancja (dla produktów niespożywczych) -->
+		<StackPanel IsVisible="{Binding IsNonFood}">
+			<TextBlock Text="Czas gwarancji (miesiące)" />
+			<NumericUpDown Value="{Binding WarrantyPeriod, Mode=TwoWay}" Minimum="0" />
 		</StackPanel>
-		<!--Warranty or Expiration date fields-->
-		<StackPanel>
-			<TextBlock Text="Czas gwarancji" IsVisible="{Binding IsNonFood}" />
-			<TextBox Watermark="Okres gwarancji (miesiące)"  Text="{Binding WarrantyPeriod}" IsVisible="{Binding IsNonFood}" />
+
+		<!-- Data ważności (dla produktów spożywczych) -->
+		<StackPanel IsVisible="{Binding IsFood}">
+			<TextBlock Text="Data ważności" />
+			<DatePicker SelectedDate="{Binding ExpirationDate}" />
 		</StackPanel>
-		<StackPanel>
-			<TextBlock Text="Data ważności" IsVisible="{Binding IsFood}"/>
-			<DatePicker SelectedDate="{Binding ExpirationDate}" IsVisible="{Binding IsFood}"  />
-		</StackPanel>
-		<!--Buttons-->
-		<StackPanel Orientation="Horizontal" Spacing="30">
-			<Button Width="80" HorizontalAlignment="Left" Command="{Binding SaveCommand}">
-				<TextBlock Text="Zapisz" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+		<!-- Przyciski -->
+		<StackPanel Orientation="Horizontal" Spacing="20" Margin="0 20 0 0">
+			<Button Width="100" Command="{Binding SaveCommand}">
+				<TextBlock Text="Zapisz" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Button>
-			<Button Width="80" HorizontalAlignment="Left" Command="{Binding CancelCommand}">
-				<TextBlock Text="Anuluj" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			<Button Width="100" Command="{Binding CancelCommand}">
+				<TextBlock Text="Anuluj" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Button>
+			<Button Width="150" Command="{Binding AddCategoryCommand}">
+				<TextBlock Text="Dodaj kategorię" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Button>
 		</StackPanel>
 	</StackPanel>
+			</Border>
+		</Grid>
 </UserControl>
