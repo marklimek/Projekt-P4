@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjektP4.AppDatabase.Data;
 
@@ -11,16 +10,14 @@ using ProjektP4.AppDatabase.Data;
 namespace ProjektP4.Migrations
 {
     [DbContext(typeof(WarehouseDbContext))]
-    [Migration("20250622193005_InitialCreate")]
-    partial class InitialCreate
+    partial class WarehouseDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
 
-            modelBuilder.Entity("Models.Product", b =>
+            modelBuilder.Entity("ProjektP4.AppLogic.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,9 +51,9 @@ namespace ProjektP4.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("Models.FoodProduct", b =>
+            modelBuilder.Entity("ProjektP4.AppLogic.Models.FoodProduct", b =>
                 {
-                    b.HasBaseType("Models.Product");
+                    b.HasBaseType("ProjektP4.AppLogic.Models.Product");
 
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("TEXT");
@@ -64,9 +61,9 @@ namespace ProjektP4.Migrations
                     b.HasDiscriminator().HasValue("Food");
                 });
 
-            modelBuilder.Entity("Models.NonFoodProduct", b =>
+            modelBuilder.Entity("ProjektP4.AppLogic.Models.NonFoodProduct", b =>
                 {
-                    b.HasBaseType("Models.Product");
+                    b.HasBaseType("ProjektP4.AppLogic.Models.Product");
 
                     b.Property<int>("WarrantyPeriod")
                         .HasColumnType("INTEGER");

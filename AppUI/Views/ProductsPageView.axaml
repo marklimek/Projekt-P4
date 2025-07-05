@@ -40,16 +40,19 @@
 			<DataGridTemplateColumn>
 				<DataGridTemplateColumn.CellTemplate>
 					<DataTemplate>
-						<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" HorizontalAlignment="Center"/>
+
+						<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"						HorizontalAlignment="Center"/>
 					</DataTemplate>
 				</DataGridTemplateColumn.CellTemplate>
 			</DataGridTemplateColumn>
-			<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+
+			<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
 			<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
 			<DataGridTextColumn Header="Cena" Binding="{Binding Price}" />
 			<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
-			<DataGridTextColumn Header="Gwarancja" Binding="{Binding .,Converter={StaticResource WarrantyConverter}}" />
-			<DataGridTextColumn Header="Data ważności" Binding="{Binding .,Converter={StaticResource ExpirationDateConverter}}" />
+			<DataGridTextColumn Header="Dodatkowe informacje" Binding="{Binding AdditionalInfo}" />
+			<!--<DataGridTextColumn Header="Gwarancja" Binding="{Binding .,Converter={StaticResource WarrantyConverter}}" />
+			<DataGridTextColumn Header="Data ważności" Binding="{Binding .,Converter={StaticResource ExpirationDateConverter}}" />-->
 			<!-- Action buttons column -->
 			<DataGridTemplateColumn Header="Akcje">
 				<DataGridTemplateColumn.CellTemplate>

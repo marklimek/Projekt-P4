@@ -5,6 +5,7 @@ using System.IO;
 
 namespace ProjektP4.AppDatabase.Data
 {
+
     internal class WarehouseDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
@@ -15,14 +16,12 @@ namespace ProjektP4.AppDatabase.Data
             options.UseSqlite($"Data Source={path}");
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasDiscriminator<string>("ProductType")
-                .HasValue<FoodProduct>("Food")
-                .HasValue<NonFoodProduct>("NonFood");
-
+            .HasValue<FoodProduct>("Food")
+            .HasValue<NonFoodProduct>("NonFood");
         }
-
     }
 }
+

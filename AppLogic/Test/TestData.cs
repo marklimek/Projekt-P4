@@ -15,16 +15,15 @@ namespace ProjektP4.AppLogic.Test
         {
             using var service = new InventoryService();
 
-            var product = new FoodProduct(
-            name: "Jajko",
-            price: 1.99,
-            quantity: 12,
-            category: "Nabiał",
-            expirationDate: DateTime.Now.AddDays(30)
-            );
 
-            service.AddProduct(product);
+            var food = new FoodProduct("Mleko", 3.99, 10, "Spożywcze", DateTime.Now.AddDays(7));
+            var nonFood = new NonFoodProduct("Laptop", 2999.99, 5, "Elektronika", 24);
+
+            service.AddProduct(food);
+            service.AddProduct(nonFood);
+
 
         }
+
     }
 }

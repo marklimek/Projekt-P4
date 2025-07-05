@@ -9,11 +9,6 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-
-	<Application.Resources>
-		<conv:WarrantyConverter x:Key="WarrantyConverter"/>
-		<conv:ExpirationDateConverter x:Key="ExpirationDateConverter"/>
-	</Application.Resources>
   
     <Application.Styles>
         <FluentTheme />
