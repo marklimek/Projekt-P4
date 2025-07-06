@@ -19,7 +19,7 @@ namespace ProjektP4.AppUI.ViewModels
     public partial class HomePageViewModel : ViewModelBase, INavigatable
     {
 
-
+        private readonly Action<ViewModelBase> _navigate;
 
         public ObservableCollection<ProductRowViewModel> RecentlyAddedProducts { get; } = new();
         public ObservableCollection<ProductRowViewModel> LowStockProducts { get; } = new();
@@ -27,11 +27,14 @@ namespace ProjektP4.AppUI.ViewModels
         public ICommand RestockCommand { get; }
         public ICommand ShowDetailsCommand { get; }
 
-        public HomePageViewModel()
+
+        public HomePageViewModel(Action<ViewModelBase> navigate)
         {
+            _navigate = navigate ?? throw new ArgumentNullException(nameof(navigate));
             RestockCommand = new RelayCommand<ProductRowViewModel>(Restock);
             ShowDetailsCommand = new RelayCommand<ProductRowViewModel>(ShowDetails);
         }
+
         public void OnNavigatedTo()
         {
             LoadProducts();
@@ -65,10 +68,13 @@ namespace ProjektP4.AppUI.ViewModels
             LoadProducts();
         }
 
-        private void ShowDetails(ProductRowViewModel product)
+        public void ShowDetails(ProductRowViewModel product)
         {
-            // Możesz tu np. otworzyć popup albo przejść do szczegółów
-            //Console.WriteLine($"Szczegóły: {product.Name}, {product.AdditionalInfo}");
+            if (product?.Product != null)
+            {
+                var detailsViewModel = new ProductDetailsViewModel(product.Product, _navigate);
+                _navigate(detailsViewModel);
+            }
         }
     }
 }

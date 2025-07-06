@@ -12,6 +12,8 @@ namespace ProjektP4.AppLogic.Models
     {
         public DateTime ExpirationDate { get; set; }
         public override string AdditionalInfo => $"Data ważności: {ExpirationDate:dd.MM.yyyy}";
+        public bool IsExpiringSoon => ExpirationDate <= DateTime.Now.AddDays(7);
+
         public FoodProduct() { }
         public FoodProduct(string name, double price, int quantity, string category, DateTime expirationDate)
         : base(name, price, quantity, category)

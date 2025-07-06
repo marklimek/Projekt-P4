@@ -25,7 +25,7 @@ namespace ProjektP4.AppUI.ViewModels
         private readonly Action<ViewModelBase> _navigate;
         public ProductsPageViewModel(Action<ViewModelBase> navigate)
         {
-            _navigate = navigate;
+            _navigate = navigate ?? throw new ArgumentNullException(nameof(navigate));
             LoadProducts();
         }
 
@@ -41,9 +41,14 @@ namespace ProjektP4.AppUI.ViewModels
 
 
         [RelayCommand]
-        private void ShowDetails(ProductRowViewModel product) { 
-        //TODO
+        private void ShowDetails(ProductRowViewModel productRow) {
+            if (productRow?.Product != null)
+            {
+                var detailsViewModel = new ProductDetailsViewModel(productRow.Product, _navigate);
+                _navigate(detailsViewModel);
+            }
         }
+
         [RelayCommand]
         private void Edit(ProductRowViewModel product) { 
         //TODO

@@ -50,9 +50,7 @@
 			<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
 			<DataGridTextColumn Header="Cena" Binding="{Binding Price}" />
 			<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
-			<DataGridTextColumn Header="Dodatkowe informacje" Binding="{Binding AdditionalInfo}" />
-			<!--<DataGridTextColumn Header="Gwarancja" Binding="{Binding .,Converter={StaticResource WarrantyConverter}}" />
-			<DataGridTextColumn Header="Data ważności" Binding="{Binding .,Converter={StaticResource ExpirationDateConverter}}" />-->
+			
 			<!-- Action buttons column -->
 			<DataGridTemplateColumn Header="Akcje">
 				<DataGridTemplateColumn.CellTemplate>

@@ -11,7 +11,7 @@
 		<StackPanel Margin="20" Spacing="20">
 
 			<!-- Tabela 1: Ostatnio dodane produkty -->
-			<TextBlock Text="Tabele załadują się po rozwinięciu hamburger menu" FontSize="14" />
+			<TextBlock Text="Tabele załadują się po rozwinięciu hamburger menu" FontSize="14" Foreground="IndianRed"/>
 			<TextBlock Text="Ostatnio dodane produkty" FontSize="18" FontWeight="Bold"/>
 			<DataGrid ItemsSource="{Binding RecentlyAddedProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
                       BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

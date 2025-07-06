@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+             xmlns:vm="clr-namespace:ProjektP4.AppUI.ViewModels"
+             x:Class="ProjektP4.AppUI.Views.ProductDetailsView"
+             x:DataType="vm:ProductDetailsViewModel">
+	<StackPanel>
+		<TextBlock Text="Szczegóły Produktu" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+
+		<Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto" Margin="20">
+
+			<TextBlock Text="Nazwa:" FontWeight="Bold" FontSize="20" Grid.Row="0" Grid.Column="0" Margin="0 0 10 10"/>
+			<TextBlock Text="{Binding Name}" FontSize="20" Grid.Row="0" Grid.Column="1" Margin="0 0 0 10"/>
+
+			<TextBlock Text="Kategoria:" FontWeight="Bold" FontSize="20" Grid.Row="1" Grid.Column="0" Margin="0 0 10 10"/>
+			<TextBlock Text="{Binding Category}" FontSize="20" Grid.Row="1" Grid.Column="1" Margin="0 0 0 10"/>
+
+			<TextBlock Text="Cena:" FontWeight="Bold" FontSize="20" Grid.Row="2" Grid.Column="0" Margin="0 0 10 10"/>
+			<TextBlock Text="{Binding Price}" FontSize="20" Grid.Row="2" Grid.Column="1" Margin="0 0 0 10"/>
+
+			<TextBlock Text="Ilość:" FontWeight="Bold" FontSize="20" Grid.Row="3" Grid.Column="0" Margin="0 0 10 10"/>
+			<TextBlock Text="{Binding Quantity}" FontSize="20" Grid.Row="3" Grid.Column="1" Margin="0 0 0 10"/>
+
+			<TextBlock Text="Data dodania:" FontWeight="Bold" FontSize="20" Grid.Row="4" Grid.Column="0" Margin="0 0 10 10"/>
+			<TextBlock Text="{Binding AddedDate}" FontSize="20" Grid.Row="4" Grid.Column="1" Margin="0 0 0 10"/>
+
+			<TextBlock Text="Dodatkowe informacje:" FontWeight="Bold" FontSize="20" Grid.Row="5" Grid.Column="0" Margin="0 0 10 10"/>
+			<TextBlock Text="{Binding AdditionalInfo}" FontSize="20" Grid.Row="5" Grid.Column="1" Margin="0 0 0 10"/>
+
+			<TextBlock Text="⚠️ Produkt zbliża się do daty ważności!"
+					   Foreground="Red"
+					   FontWeight="Bold"
+					   FontSize="18"
+					   Grid.Row="6" Grid.ColumnSpan="2"
+					   IsVisible="{Binding IsExpiringSoon}"
+					   Margin="0 10 0 0"/>
+		</Grid>
+
+
+
+		<Button Content="← Powrót do listy" HorizontalAlignment="Left" Margin="15 0 0 20" Command="{Binding GoBackCommand}"/>
+
+
+
+
+
+	</StackPanel>
+</UserControl>

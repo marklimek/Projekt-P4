@@ -29,8 +29,9 @@ public partial class MainWindowViewModel : ViewModelBase
             TestData.AddSampleProduct();
         }
 
-        _homePageViewModel = new HomePageViewModel();
-       // _homePageViewModel.LoadProducts(); 
+
+        _homePageViewModel = new HomePageViewModel(NavigateTo);
+        // _homePageViewModel.LoadProducts(); 
 
         CurrentPage = _homePageViewModel;
         SelectedListItem = Items.FirstOrDefault(i => i.ModelType == typeof(HomePageViewModel));
