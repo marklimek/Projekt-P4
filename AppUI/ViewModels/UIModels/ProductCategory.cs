@@ -11,6 +11,8 @@ namespace ProjektP4.AppUI.ViewModels.UIModels
     {
         public string CategoryName { get; set; }
         public string ProductType { get; set; } // "FoodProduct" lub "NonFoodProduct"
+
+        public override string ToString() => CategoryName;
     }
 
 }

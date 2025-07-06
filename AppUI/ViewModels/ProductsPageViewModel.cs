@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls.ApplicationLifetimes;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
@@ -21,8 +22,10 @@ namespace ProjektP4.AppUI.ViewModels
     {
         public ObservableCollection<ProductRowViewModel> Products { get; } = new();
 
+        [ObservableProperty] private string _searchQuery;
+        private List<ProductRowViewModel> _allProducts = new();
+        private Action<ViewModelBase> _navigate;
 
-        private readonly Action<ViewModelBase> _navigate;
         public ProductsPageViewModel(Action<ViewModelBase> navigate)
         {
             _navigate = navigate ?? throw new ArgumentNullException(nameof(navigate));
@@ -31,13 +34,31 @@ namespace ProjektP4.AppUI.ViewModels
 
         public void LoadProducts()
         {
-            
             using var service = new InventoryService();
             var items = service.GetAllProducts();
-            Products.Clear();
-            foreach (var item in items)
-                Products.Add(new ProductRowViewModel(item));
+            _allProducts = items.Select(p => new ProductRowViewModel(p)).ToList();
+            FilterProducts();
         }
+
+
+        partial void OnSearchQueryChanged(string value)
+        {
+            FilterProducts();
+        }
+
+        private void FilterProducts()
+        {
+            Products.Clear();
+            var filtered = string.IsNullOrWhiteSpace(SearchQuery)
+            ? _allProducts
+            : _allProducts.Where(p =>
+            p.Name.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+            p.Category.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            foreach (var item in filtered)
+                Products.Add(item);
+        }
+
 
 
         [RelayCommand]
@@ -50,12 +71,16 @@ namespace ProjektP4.AppUI.ViewModels
         }
 
         [RelayCommand]
-        private void Edit(ProductRowViewModel product) { 
-        //TODO
+        private void Edit(ProductRowViewModel product) {
+            if (product?.Product != null)
+            {
+                var editViewModel = new ProductEditViewModel(product.Product, _navigate);
+                _navigate(editViewModel);
+            }
         }
+
         //Remove rows by clicking icon in action column
         [RelayCommand]
-
         private async Task DeleteAsync(ProductRowViewModel row)
         {
             if (row is null)
@@ -109,10 +134,10 @@ namespace ProjektP4.AppUI.ViewModels
             }
         }
 
-
         [RelayCommand]
         public void AddProduct() {
             _navigate(new AddProductPageViewModel(_navigate));
-        }
+        }        
+
     }
 }

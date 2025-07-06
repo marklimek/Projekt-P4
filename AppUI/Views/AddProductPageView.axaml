@@ -63,9 +63,9 @@
 			<Button Width="100" Command="{Binding CancelCommand}">
 				<TextBlock Text="Anuluj" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Button>
-			<Button Width="150" Command="{Binding AddCategoryCommand}">
+			<!--<Button Width="150" Command="{Binding AddCategoryCommand}">
 				<TextBlock Text="Dodaj kategorię" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-			</Button>
+			</Button>-->
 		</StackPanel>
 	</StackPanel>
 			</Border>

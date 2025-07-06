@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+			 xmlns:templates="clr-namespace:Avalonia.Controls.Templates;assembly=Avalonia.Controls"
+			 xmlns:vm="clr-namespace:ProjektP4.AppUI.ViewModels"
+             x:Class="ProjektP4.AppUI.Views.ProductEditView"
+			 x:DataType="vm:ProductEditViewModel">
+
+	<Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*" RowSpacing="10" ColumnSpacing="10">
+
+		<TextBlock Grid.ColumnSpan="2" Text="Edytuj produkt" FontSize="20" FontWeight="Bold" Margin="0 0 0 20"/>
+
+		<!-- Nazwa -->
+		<TextBlock Grid.Row="1" Grid.Column="0" Text="Nazwa:" VerticalAlignment="Center"/>
+		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name, Mode=TwoWay}" Watermark="Nazwa produktu"/>
+
+		<!-- Cena -->
+		<TextBlock Grid.Row="2" Grid.Column="0" Text="Cena:" VerticalAlignment="Center"/>
+		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Price, Mode=TwoWay}" Watermark="Cena"/>
+
+		<!-- Iloœæ -->
+		<TextBlock Grid.Row="3" Grid.Column="0" Text="Ilosc:" VerticalAlignment="Center"/>
+		<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Quantity, Mode=TwoWay}" Watermark="Ilosc"/>
+
+		<!-- Kategoria -->
+		<TextBlock Grid.Row="4" Grid.Column="0" Text="Kategoria:" VerticalAlignment="Stretch" />
+		<ComboBox Grid.Row="4" Grid.Column="1"
+                  ItemsSource="{Binding Categories}"
+                  SelectedItem="{Binding SelectedCategory}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding CategoryName}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+
+		<!-- Data wa¿noœci -->
+		<TextBlock Grid.Row="5" Grid.Column="0" Text="Data waznosci:" VerticalAlignment="Center" IsVisible="{Binding IsFood}"/>
+		<DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding ExpirationDate}" IsVisible="{Binding IsFood}"/>
+
+		<!-- Gwarancja -->
+		<TextBlock Grid.Row="6" Grid.Column="0" Text="Gwarancja (mies.):" VerticalAlignment="Center" IsVisible="{Binding IsNonFood}"/>
+		<TextBox Grid.Row="6" Grid.Column="1" Text="{Binding WarrantyPeriod}" Watermark="Gwarancja" IsVisible="{Binding IsNonFood}"/>
+
+		<!-- Przyciski -->
+		<StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0 20 0 0">
+			<Button Command="{Binding SaveCommand}" Width="100">
+				<TextBlock Text="Zapisz" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Button>
+			<Button Command="{Binding CancelCommand}" Width="100">
+				<TextBlock Text="Anuluj" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Button>
+		</StackPanel>
+	</Grid>
+</UserControl>
