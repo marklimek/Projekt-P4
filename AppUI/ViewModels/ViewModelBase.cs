@@ -2,7 +2,7 @@
 
 namespace ProjektP4.AppUI.ViewModels
 {
-    public class ViewModelBase : ObservableObject
+    public class ViewModelBase : ObservableValidator
     {
     }
 }

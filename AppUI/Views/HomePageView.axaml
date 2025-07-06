@@ -8,51 +8,54 @@
              x:DataType="vm:HomePageViewModel">
 
 	<Grid RowDefinitions="Auto,*">
-		<StackPanel Margin="20" Spacing="20">
 
-			<!-- Tabela 1: Ostatnio dodane produkty -->
-			<TextBlock Text="Tabele załadują się po rozwinięciu hamburger menu" FontSize="14" Foreground="IndianRed"/>
-			<TextBlock Text="Ostatnio dodane produkty" FontSize="18" FontWeight="Bold"/>
-			<DataGrid ItemsSource="{Binding RecentlyAddedProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
-                      BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-					<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
-					<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
-					<DataGridTextColumn Header="Dodatkowe info" Binding="{Binding AdditionalInfo}" />
-					<DataGridTextColumn Header="Data dodania" Binding="{Binding AddedDate}" />
-				</DataGrid.Columns>
-			</DataGrid>
+		<ScrollViewer Grid.Row="1"  Margin="20">
+			<StackPanel Spacing="20">
 
-			<!-- Tabela 2: Produkty z ilością ≤ 5 -->
-			<TextBlock Text="Produkty wymagające uzupełnienia" FontSize="18" FontWeight="Bold"/>
-			<DataGrid ItemsSource="{Binding LowStockProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
-                      BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-					<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
-					<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
-					<DataGridTextColumn Header="Dodatkowe info" Binding="{Binding AdditionalInfo}" />
-					<DataGridTemplateColumn Header="Akcje">
-						<DataGridTemplateColumn.CellTemplate>
-							<DataTemplate>
-								<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-									<Button ToolTip.Tip="Uzupełnij"
-                                            Click="OnRestockClick"
-                                            Tag="{Binding}">
-										<PathIcon Data="{StaticResource AddProduct}" Width="16" Height="16"/>
-									</Button>
-									<Button ToolTip.Tip="Szczegóły"
-                                            Click="OnShowDetailsClick"
-                                            Tag="{Binding}">
-										<PathIcon Data="{StaticResource Details}" Width="16" Height="16"/>
-									</Button>
-								</StackPanel>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-				</DataGrid.Columns>
-			</DataGrid>
-		</StackPanel>
+				<!-- Tabela 1: Ostatnio dodane produkty -->
+				<TextBlock Text="Tabele załadują się po rozwinięciu hamburger menu" FontSize="14" Foreground="IndianRed"/>
+				<TextBlock Text="Ostatnio dodane produkty" FontSize="18" FontWeight="Bold"/>
+				<DataGrid ItemsSource="{Binding RecentlyAddedProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
+						  BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
+						<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
+						<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
+						<DataGridTextColumn Header="Dodatkowe info" Binding="{Binding AdditionalInfo}" />
+						<DataGridTextColumn Header="Data dodania" Binding="{Binding AddedDate}" />
+					</DataGrid.Columns>
+				</DataGrid>
+
+				<!-- Tabela 2: Produkty z ilością ≤ 5 -->
+				<TextBlock Text="Produkty wymagające uzupełnienia" FontSize="18" FontWeight="Bold"/>
+				<DataGrid ItemsSource="{Binding LowStockProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
+						  BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
+						<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
+						<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
+						<DataGridTextColumn Header="Dodatkowe info" Binding="{Binding AdditionalInfo}" />
+						<DataGridTemplateColumn Header="Akcje">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+										<Button ToolTip.Tip="Uzupełnij"
+												Click="OnRestockClick"
+												Tag="{Binding}">
+											<PathIcon Data="{StaticResource AddProduct}" Width="16" Height="16"/>
+										</Button>
+										<Button ToolTip.Tip="Szczegóły"
+												Click="OnShowDetailsClick"
+												Tag="{Binding}">
+											<PathIcon Data="{StaticResource Details}" Width="16" Height="16"/>
+										</Button>
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</StackPanel>
+		</ScrollViewer>
 	</Grid>
 </UserControl>

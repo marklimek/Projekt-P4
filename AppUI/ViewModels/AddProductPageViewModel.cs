@@ -7,6 +7,7 @@ using ProjektP4.AppUI.ViewModels.UIModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,9 @@ namespace ProjektP4.AppUI.ViewModels
 
         public ObservableCollection<ProductCategory> Categories { get; }
 
-        [ObservableProperty] private string name = string.Empty;
-        [ObservableProperty] private double price;
-        [ObservableProperty] private int quantity;
+        [ObservableProperty] [Required(ErrorMessage = "Nazwa jest wymagana")] private string name = string.Empty;
+        [ObservableProperty] [Range(0.01, double.MaxValue, ErrorMessage = "Cena musi być większa niż 0")] private double price;
+        [ObservableProperty] [Range(1, int.MaxValue, ErrorMessage = "Ilość musi być większa niż 0")] private int quantity;
         [ObservableProperty] private ProductCategory selectedCategory;
         [ObservableProperty] private int warrantyPeriod;
         [ObservableProperty] private DateTimeOffset? expirationDate = DateTimeOffset.Now;
