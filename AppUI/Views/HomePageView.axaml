@@ -16,11 +16,11 @@
 			<DataGrid ItemsSource="{Binding RecentlyAddedProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
                       BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 				<DataGrid.Columns>
-					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"  />
-					<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}"  />
+					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
+					<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
 					<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
-					<DataGridTextColumn Header="Dodatkowe info"  Binding="{Binding AdditionalInfo}"/>
-					<DataGridTextColumn Header="Data dodania"  Binding="{Binding AddedDate}"/>
+					<DataGridTextColumn Header="Dodatkowe info" Binding="{Binding AdditionalInfo}" />
+					<DataGridTextColumn Header="Data dodania" Binding="{Binding AddedDate}" />
 				</DataGrid.Columns>
 			</DataGrid>
 
@@ -29,18 +29,22 @@
 			<DataGrid ItemsSource="{Binding LowStockProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
                       BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 				<DataGrid.Columns>
-					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
 					<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
-					<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}"  />
+					<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
 					<DataGridTextColumn Header="Dodatkowe info" Binding="{Binding AdditionalInfo}" />
 					<DataGridTemplateColumn Header="Akcje">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
 								<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-									<Button ToolTip.Tip="Uzupełnij" >
+									<Button ToolTip.Tip="Uzupełnij"
+                                            Click="OnRestockClick"
+                                            Tag="{Binding}">
 										<PathIcon Data="{StaticResource AddProduct}" Width="16" Height="16"/>
 									</Button>
-									<Button ToolTip.Tip="Szczegóły" >
+									<Button ToolTip.Tip="Szczegóły"
+                                            Click="OnShowDetailsClick"
+                                            Tag="{Binding}">
 										<PathIcon Data="{StaticResource Details}" Width="16" Height="16"/>
 									</Button>
 								</StackPanel>
