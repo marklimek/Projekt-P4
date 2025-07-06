@@ -23,6 +23,7 @@ namespace ProjektP4.AppUI.ViewModels.UIModels
         public string Category => Product.Category;
         public double Price => Product.Price;
         public int Quantity => Product.Quantity;
+        public DateTime AddedDate => Product.AddedDate;
 
         public string AdditionalInfo =>
         Product is FoodProduct food ? $"Ważne do: {food.ExpirationDate:dd.MM.yyyy}" :

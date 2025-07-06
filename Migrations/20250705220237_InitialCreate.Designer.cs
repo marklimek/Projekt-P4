@@ -11,7 +11,7 @@ using ProjektP4.AppDatabase.Data;
 namespace ProjektP4.Migrations
 {
     [DbContext(typeof(WarehouseDbContext))]
-    [Migration("20250705172155_InitialCreate")]
+    [Migration("20250705220237_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,6 +25,9 @@ namespace ProjektP4.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Category")
                         .IsRequired()

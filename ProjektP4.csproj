@@ -43,4 +43,10 @@
       <SubType>Designer</SubType>
     </AvaloniaResource>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AppUI\Views\RemoveProductPageView.axaml.cs">
+      <DependentUpon>RemoveProductPageView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

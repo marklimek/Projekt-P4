@@ -11,27 +11,28 @@
 		<StackPanel Margin="20" Spacing="20">
 
 			<!-- Tabela 1: Ostatnio dodane produkty -->
+			<TextBlock Text="Tabele załadują się po rozwinięciu hamburger menu" FontSize="14" />
 			<TextBlock Text="Ostatnio dodane produkty" FontSize="18" FontWeight="Bold"/>
-			<DataGrid  AutoGenerateColumns="False" GridLinesVisibility="All"
+			<DataGrid ItemsSource="{Binding RecentlyAddedProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
                       BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 				<DataGrid.Columns>
-					<DataGridTextColumn Header="Nazwa"  />
-					<DataGridTextColumn Header="Kategoria"  />
-					<DataGridTextColumn Header="Ilość"  />
-					<DataGridTextColumn Header="Dodatkowe info"  />
-					<DataGridTextColumn Header="Data dodania"  />
+					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"  />
+					<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}"  />
+					<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
+					<DataGridTextColumn Header="Dodatkowe info"  Binding="{Binding AdditionalInfo}"/>
+					<DataGridTextColumn Header="Data dodania"  Binding="{Binding AddedDate}"/>
 				</DataGrid.Columns>
 			</DataGrid>
 
 			<!-- Tabela 2: Produkty z ilością ≤ 5 -->
 			<TextBlock Text="Produkty wymagające uzupełnienia" FontSize="18" FontWeight="Bold"/>
-			<DataGrid  AutoGenerateColumns="False" GridLinesVisibility="All"
+			<DataGrid ItemsSource="{Binding LowStockProducts}" AutoGenerateColumns="False" GridLinesVisibility="All"
                       BorderThickness="1" BorderBrush="Gray" ColumnWidth="*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 				<DataGrid.Columns>
-					<DataGridTextColumn Header="Nazwa"  />
-					<DataGridTextColumn Header="Kategoria"  />
-					<DataGridTextColumn Header="Ilość"  />
-					<DataGridTextColumn Header="Dodatkowe info"  />
+					<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+					<DataGridTextColumn Header="Kategoria" Binding="{Binding Category}" />
+					<DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}"  />
+					<DataGridTextColumn Header="Dodatkowe info" Binding="{Binding AdditionalInfo}" />
 					<DataGridTemplateColumn Header="Akcje">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
@@ -48,7 +49,6 @@
 					</DataGridTemplateColumn>
 				</DataGrid.Columns>
 			</DataGrid>
-
 		</StackPanel>
 	</Grid>
 </UserControl>

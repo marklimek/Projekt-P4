@@ -16,8 +16,8 @@ namespace ProjektP4.AppLogic.Test
             using var service = new InventoryService();
 
 
-            var food = new FoodProduct("Mleko", 3.99, 10, "Spożywcze", DateTime.Now.AddDays(7));
-            var nonFood = new NonFoodProduct("Laptop", 2999.99, 5, "Elektronika", 24);
+            var food = new FoodProduct("Mleko", 3.99, 10, "Spożywcze", DateTime.Now.AddDays(7)) { AddedDate = DateTime.Now };
+            var nonFood = new NonFoodProduct("Laptop", 2999.99, 5, "Elektronika", 24) { AddedDate = DateTime.Now };
 
             service.AddProduct(food);
             service.AddProduct(nonFood);

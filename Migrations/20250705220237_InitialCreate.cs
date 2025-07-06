@@ -21,6 +21,7 @@ namespace ProjektP4.Migrations
                     Category = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<double>(type: "REAL", nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    AddedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ProductType = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     WarrantyPeriod = table.Column<int>(type: "INTEGER", nullable: true)

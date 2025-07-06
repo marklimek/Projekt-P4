@@ -1,11 +1,13 @@
-using System.Linq;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using ProjektP4.AppLogic.Services;
+using ProjektP4.AppLogic.Test;
 using ProjektP4.ViewModels;
 using ProjektP4.Views;
+using System.Linq;
 
 namespace ProjektP4.AppUI
 {

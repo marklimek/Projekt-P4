@@ -6,7 +6,6 @@ using MsBox.Avalonia.Enums;
 using ProjektP4.AppLogic.Models;
 using ProjektP4.AppLogic.Services;
 using ProjektP4.AppLogic.Test;
-using ProjektP4.AppLogic.Test;
 using ProjektP4.AppUI.ViewModels.UIModels;
 using System;
 using System.Collections.Generic;
@@ -32,9 +31,9 @@ namespace ProjektP4.AppUI.ViewModels
 
         public void LoadProducts()
         {
+            
             using var service = new InventoryService();
             var items = service.GetAllProducts();
-            //TestData.AddSampleProduct();
             Products.Clear();
             foreach (var item in items)
                 Products.Add(new ProductRowViewModel(item));

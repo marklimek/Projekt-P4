@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjektP4.AppLogic.Models
 {
@@ -12,6 +13,7 @@ namespace ProjektP4.AppLogic.Models
         public string Category { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
+        public DateTime AddedDate { get; set; }
         public virtual string AdditionalInfo => string.Empty;
         protected Product() { }
         protected Product(string name, double price, int quantity, string category)
@@ -20,6 +22,7 @@ namespace ProjektP4.AppLogic.Models
             Price = price;
             Quantity = quantity;
             Category = category;
+            AddedDate = DateTime.Now;
         }
     }
 
